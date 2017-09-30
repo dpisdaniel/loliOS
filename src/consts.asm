@@ -2,6 +2,12 @@
 ; Constant system strings
 sys_version:            db 'loliOS ver 0.1', 0
 ready_message:          db 'loliOS is ready', 13, 0
+
+; Mem addresses
+BIOS_MMAP               equ 0x00020000 ; 24 bytes per entry, BIO_MMAP_LENGTH x 24 bytes
+BIOS_MMAP_LENGTH        equ 0x00021000 ; 2 bytes
+KERNEL_START            equ 0x00008000 ; TODO: Add padding to wanted length
+
 ; Color pallete
 vga_colors:
 db 0  ; black
