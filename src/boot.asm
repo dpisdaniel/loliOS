@@ -1,3 +1,4 @@
+[bits 32]
 org 0x8000
 
 start:
@@ -27,7 +28,8 @@ found:
 kern_start:
         push bp
         mov bp, kern_start_msg
-        call display
+        ;call display
+        mov dword [0xA0000], kern_start_msg
         pop bp
 .hang:  hlt
         jmp .hang
