@@ -1,6 +1,6 @@
 mkdir -p ./bin
 cd ./src
-nasm  boot.asm -o ../bin/kernel.sys -l ../bin/kernel-dbgz.txt
+nasm  boot.asm -o ../bin/kernel.sys
 cd ../
 
 cd ./boot
