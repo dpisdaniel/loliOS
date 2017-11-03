@@ -1,39 +1,30 @@
-[bits 32]
+; loliOS - a 32 bit OS written in Assembly
+; Copyright (C) 2017 dpisdaniel -- see LICENSE
+
+BITS 32
 org 0x8000
+
+%include "helpers/stack_help.asm"
 
 start:
         jmp short kern_start
 
-display:
-        pusha
-        xor cx, cx
-        mov ax, 0x1300  ; write a string without attributes
-        mov bx, 0x0007  ; page=0, attributes are lgray/black
-        mov dl, 0
-        mov dh, [bios_row]
-        inc byte [bios_row]
-        mov si, bp
-
-calc_length:
-        cmp byte [si], 0
-        je found
-        inc cx
-        inc si
-        jmp calc_length
-found:
-        int 0x10
-        popa
-        ret
-
+; Main kernel function.
+; A few assumptions about how we were loaded from loliBooter:
+; We have been loaded in physical address 0x8000
+; Interrupts are off
+; We are in protected mode (Should not use BIOS interrupts here)
+; No IDT set
 kern_start:
-        push bp
-        mov bp, kern_start_msg
-        ;call display
-        mov dword [0xA0000], kern_start_msg
-        pop bp
+        push_args 0x63, VGA_DEF_FG, VGA_DEF_BG, 50, 20
+        call write_char
 .hang:  hlt
         jmp .hang
 
 bios_row: db 5
 kern_start_msg: db "Welcome to loliOS!", 0
+
+%include "consts.asm"
+%include "terminit.asm"
+
 .end:

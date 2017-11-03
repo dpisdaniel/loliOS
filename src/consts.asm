@@ -30,10 +30,9 @@ db 14 ; light brown
 db 15 ; white
 
 ; Constant addresses
-VGA_BUFFER:             equ 0x000B8000
+VGA_BUFFER      equ 0x000B8000
 ; Constant values
-VGA_WIDTH  equ 80
-VGA_HEIGHT equ 25
-VGA_DEF_BG equ 00 ; black - 4 bits
-VGA_DEF_FG equ 01 ; blue  - 4 bits
-
+VGA_WIDTH       equ 80
+VGA_HEIGHT      equ 25
+VGA_DEF_BG      equ 00 ; black - 4 bits
+VGA_DEF_FG      equ 01 ; blue  - 4 bits
