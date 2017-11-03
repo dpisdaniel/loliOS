@@ -1,5 +1,5 @@
 org 7C00h
-; Hi I like documentation
+
 start:
         jmp boot_start
 
