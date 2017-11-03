@@ -3,7 +3,7 @@
 ## Why
 A proper convention for function parameters is necessary to keep
 myself from going crazy trying to use my own functions in the future.
-I will use a calling convention similiar to cdecl.
+I will use a calling convention similiar to cdecl/System V ABI.
 
 ## What
 Function arguments are passed on the stack.
@@ -27,4 +27,23 @@ Will translate to:
 push b
 push a
 ```
+The following table illustrates how a stack frame should look in a function
+Stack Frame with Base Pointer:
+
+Position   Contents                     Frame
+4n+8(%ebp) memory argument fourbyte n
+           . . .                        Previous
+8(%ebp)    memory argument fourbyte 0
+
+4(%ebp)    return address
+0(%ebp)    previous %ebp value
+-4(%ebp)   unspecified                  Current
+           . . .
+0(%esp)    variable size
+## Macros
+I am planning on using a bunch of macros to simplify a lot of work
+like rudimentary math operations, macros for the calling conventions
+(for the function prologue, etc) and more.
+Some of these might need a "calling convention" as well.
+I still need to decide on one.
 
