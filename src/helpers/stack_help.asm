@@ -33,13 +33,13 @@
 %macro push_args 1-*
         %rep %0
         push dword %{-1:-1} ; Will always push the last parameter
-        %rotate 1
+        %rotate -1
         %endrep
 %endmacro
 
 ; Moves the function parameter at index arg_index into
 ; register reg.
-; The parameter indexes start from 1 for the leftmost parameter
+; The parameter indexes start from 2 (yes stupid) for the leftmost parameter
 ; in the function's C declaration.
 %define mov_arg(reg, arg_index) mov reg, [ebp + 4 * arg_index]
 
@@ -54,4 +54,5 @@
 ; Same as mov_local_var but stores a local variable on the stack
 %define store_local_var(reg, local_var_ind) mov [esp + 4 * local_var_ind], reg
 
+%define get_local_var(local_var_ind) [esp + 4 * local_var_ind]
 
