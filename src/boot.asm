@@ -16,6 +16,7 @@ start:
 ; We are in protected mode (Should not use BIOS interrupts here)
 ; No IDT set
 kern_start:
+        call copy_vga_buf
         push_args 0x63, VGA_DEF_FG, VGA_DEF_BG, 50, 20
         call write_char
 .hang:  hlt
