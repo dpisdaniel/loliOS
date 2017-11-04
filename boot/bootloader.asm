@@ -1,3 +1,6 @@
+; loliOS - a 32 bit OS written in Assembly
+; Copyright (C) 2017 dpisdaniel -- see LICENSE
+
 org 7C00h
 
 start:
